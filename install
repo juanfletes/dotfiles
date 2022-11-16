@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+
+red='\033[0;31m'
+green='\033[0;32m'
+purple='\033[0;35m'
+normal='\033[0m'
+
+_w() {
+	local -r text="${1:-}"
+	echo -e "$text"
+}
+_a() { _w " > $1"; }
+_e() { _a "${red}$1${normal}"; }
+_s() { _a "${green}$1${normal}"; }
+_q() { read -rp "🤔 $1: " "$2"; }
+
+current_timestamp() { date +%s; }
+
+command_exists() {
+	type "$1" >/dev/null 2>&1
+}
+
+_w "  ┌────────────────────────────────────┐"
+_w "~ │ 🚀 Welcome to the ${green}dotfile${normal} installer! │ ~"
+_w "  └────────────────────────────────────┘"
+_w
+
+sudo apt update
+
+_a "Installing vim using apt"
+  sudo apt -y install vim 2>&1
+
+if ! command_exists git; then
+	_e "git not installed, trying to install"
+	_a "Installing using apt"
+	sudo apt -y install git 2>&1 #| _log "Installing git"
+fi
+
+if ! command_exists curl; then
+	_e "curl not installed, trying to install"
+  _a "Installing using apt"
+  sudo apt -y install curl 2>&1
+fi
+
+_a "Installing using apt"
+  sudo apt -y install zsh 2>&1
+
+-a "Make it your default shell"
+chsh -s $(which zsh)
+
+if ! command_exists omz; then
+  _e "oh-my-zsh not installed, trying to install"
+  _a "Install oh-my-zsh via curl"
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
+if ! command_exists fzf; then
+  _e "fzf not installed, trying to install"
+  _a "Install fzf via curl"
+  sudo apt -y install fzf 2>&1
+fi
+
+_a "Creating symlinks with dotbot"
+
+BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+$BASEDIR/./symlinks
+
+_a "🎉 dotfiles installed correctly! 🎉"
+_a "Please, restart your terminal to see the changes"

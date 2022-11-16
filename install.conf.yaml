@@ -1,0 +1,11 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ['~']
+
+- link:
+    ~/.vim: editors/vim/vim
+    ~/.vimrc: editors/vim/vimrc
+    ~/.zshrc: shell/zshrc
+    ~/.p10k.zsh: shell/p10k.zsh
