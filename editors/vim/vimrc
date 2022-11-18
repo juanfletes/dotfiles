@@ -29,7 +29,7 @@ set number
 set cursorline
 
 " Highlight column with cursor.
-set cursorcolumn
+" set cursorcolumn
 
 " Split window to open a pane in the bottom.
 set splitbelow
