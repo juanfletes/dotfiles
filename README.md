@@ -21,7 +21,7 @@ Full installation of my all dotfiles is using the [dotbot] installer, so
 installation is relatively painless and non-destructive, this require only one command:
 
 ```bash
-git clone https://gitlab.com/juanfletes/dotfiles ~/.dotfiles && ~/.dotfiles/install
+git clone https://github.com/juanfletes/dotfiles ~/.dotfiles && ~/.dotfiles/install
 ```
 
 ## Libraries/Standards Used
