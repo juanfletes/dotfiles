@@ -54,6 +54,13 @@ if ! command_exists omz; then
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
+_a "Installing powerlevel10k theme for oh-my-zsh"
+git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
+
+_a "Installing autosuggestions and hightlighting plugins for zsh"
+git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+
 if ! command_exists fzf; then
   _e "fzf not installed, trying to install"
   _a "Install fzf via curl"
